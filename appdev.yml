@@ -1,0 +1,18 @@
+---
+
+- name: Install AppDev
+  hosts: all
+  sudo: yes
+  tasks:
+    - name: install sails
+      npm: name=sails global=yes
+
+    - name: install appdev cli
+      npm: name=appdevdesigns/appdev-cli#develop global=yes
+
+    - name: install appdev
+      sudo: no
+      command: appdev install {{ appdev_folder_name }} --develop
+      args:
+        chdir: "{{ playbook_dir }}/.."
+        creates: "{{ appdev_folder_name }}/"

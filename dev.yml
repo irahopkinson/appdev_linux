@@ -1,0 +1,16 @@
+---
+
+- name: Setup development environment
+  hosts: all
+  sudo: yes
+  tasks:
+    - apt: name="{{ item }}" state=present
+      with_items:
+        - geany
+        - git
+        - gitg
+        - chromium-browser
+        - npm
+
+    - name: node alias for nodejs
+      file: src=/usr/bin/nodejs dest=/usr/local/bin/node state=link

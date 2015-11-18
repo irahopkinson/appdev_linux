@@ -1,0 +1,15 @@
+---
+
+- name: Developer Setup for AppDev
+  hosts: all
+  sudo: yes
+
+- include: dev.yml
+- include: mysql.yml
+  vars:
+    mysql_root_password: root
+    mysql_server_port: 8889
+    mysql_database_name: develop
+- include: appdev.yml
+  vars:
+    appdev_folder_name: sails

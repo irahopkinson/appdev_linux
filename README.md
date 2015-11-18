@@ -1,8 +1,14 @@
 # Linux AppDev Development Setup #
 
+[![Build Status](https://travis-ci.org/irahopkinson/appdev_linux.svg?branch=master)](https://travis-ci.org/irahopkinson/appdev_linux)
+
 Install and configure development environment for developing AppDev plugins.
 
-Copy or clone the **deploy** folder.
+Copy to a **deploy** folder or clone...
+```
+git clone https://github.com/irahopkinson/appdev_linux.git deploy
+```
+then...
 
 ```
 cd deploy

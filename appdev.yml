@@ -4,15 +4,40 @@
   hosts: all
   sudo: yes
   tasks:
+    - name: clean npm cache
+      command: npm cache clean -f
+
+    - name: install nodejs version manager
+      npm: name=n global=yes state=present
+
+    - name: upgrade nodejs
+      command: "n {{ nodejs_version }}"
+
+    - name: create symlink to nodejs binary
+      file: src="/usr/local/n/versions/node/{{ nodejs_version }}/bin/node"  dest=/usr/bin/node state=link
+
+    - name: upgrade npm
+      npm: name=npm global=yes state=latest
+
     - name: install sails
-      npm: name=sails global=yes
+      npm: name=sails global=yes state=present
 
     - name: install appdev cli
-      npm: name=appdevdesigns/appdev-cli#develop global=yes
+      npm: name=appdevdesigns/appdev-cli#develop global=yes state=present
 
-    - name: install appdev
+    - name: install appdev (localhost)
       sudo: no
-      command: appdev install {{ appdev_folder_name }} --develop
+      # yes types empty line over and over to accept defaults
+      shell: yes '' | appdev install {{ appdev_folder_name }} --develop
       args:
         chdir: "{{ playbook_dir }}/.."
         creates: "{{ appdev_folder_name }}/"
+      when: inventory_hostname == 'localhost'
+
+    - name: install appdev (test VM)
+      sudo: no
+      # yes types empty line over and over to accept defaults
+      shell: yes '' | appdev install {{ appdev_folder_name }} --develop
+      args:
+        creates: "{{ appdev_folder_name }}/"
+      when: inventory_hostname != 'localhost'

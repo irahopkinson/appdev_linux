@@ -4,7 +4,8 @@
   hosts: all
   sudo: yes
   tasks:
-    - apt: name="{{ item }}" state=present
+    - name: install packages
+      apt: name="{{ item }}" state=present
       with_items:
         - python-mysqldb
         - mysql-server
@@ -45,4 +46,4 @@
 
   handlers:
     - name: restart mysql
-      service: name=mysqld state=restarted
+      service: name=mysql state=restarted

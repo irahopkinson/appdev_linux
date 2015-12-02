@@ -31,18 +31,16 @@
         - ::1
         - localhost
 
-    - name: change mysql default port number
-      lineinfile: dest=/etc/mysql/my.cnf regexp="^port" insertafter="^\[mysqld]" line="port = {{ mysql_server_port }}"
-      notify: restart mysql
-    - meta: flush_handlers
-
     - name: create mysql database
       mysql_db:
         name: "{{ mysql_database_name }}"
         state: present
-        login_port: "{{ mysql_server_port }}"
         login_user: root
         login_password: "{{ mysql_root_password }}"
+
+    - name: change mysql default port number
+      lineinfile: dest=/etc/mysql/my.cnf regexp="^port" insertafter="^\[mysqld]" line="port = {{ mysql_server_port }}"
+      notify: restart mysql
 
   handlers:
     - name: restart mysql

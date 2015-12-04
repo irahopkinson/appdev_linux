@@ -7,11 +7,7 @@
     - name: install packages
       apt: name="{{ item }}" state=present
       with_items:
-        - geany
         - git
         - gitg
+        - geany
         - chromium-browser
-        - npm
-
-    - name: node alias for nodejs
-      file: src=/usr/bin/nodejs dest=/usr/local/bin/node state=link

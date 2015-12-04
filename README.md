@@ -4,6 +4,8 @@
 
 Install and configure development environment for developing AppDev plugins.
 
+You may need to [upgrade Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu).
+
 Copy to a **deploy** folder or clone...
 ```
 git clone https://github.com/irahopkinson/appdev_linux.git deploy

@@ -7,7 +7,7 @@ python:
 
 install:
   - pip install ansible==1.9.4
-  - ansible-galaxy install geerlingguy.nodejs
+  - sudo ansible-galaxy install geerlingguy.nodejs
 
 script:
   - cd tests

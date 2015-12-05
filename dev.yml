@@ -7,7 +7,8 @@
     - name: install packages
       apt: name="{{ item }}" state=present
       with_items:
+        - unzip
         - git
-        - gitg
-        - geany
-        - chromium-browser
+#        - gitg
+#        - geany
+#        - chromium-browser

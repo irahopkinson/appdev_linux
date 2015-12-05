@@ -7,10 +7,10 @@ python:
 
 install:
   - pip install ansible==1.9.4
+  - ansible-galaxy install geerlingguy.nodejs
 
 script:
   - cd tests
-  - ansible-galaxy install geerlingguy.nodejs
   - ansible-playbook -i inventory ../playbook_appdev.yml --syntax-check
   - ansible-playbook -i inventory ../playbook_appdev.yml --sudo -vvvv
   - >

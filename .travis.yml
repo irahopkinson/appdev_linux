@@ -19,8 +19,10 @@ script:
   - cd tests
   - ansible-playbook -i inventory ../playbook_appdev.yml --syntax-check
   - ansible-playbook -i inventory ../playbook_appdev.yml --sudo -vvvv
+  
+  # appdev-cli install is designed not to be idempotent so it always installs the latest without having to up the version number during development
   - >
     ansible-playbook -i inventory ../playbook_appdev.yml --sudo
-    | grep -q 'changed=0.*unreachable=0.*failed=0'
+    | grep -q 'changed=1.*unreachable=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)

@@ -26,3 +26,8 @@ script:
     | grep -q 'changed=1.*unreachable=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
+
+sudo: required
+group: stable
+dist: trusty
+os: linux

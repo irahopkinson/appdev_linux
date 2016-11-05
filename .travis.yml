@@ -9,7 +9,7 @@ before_install:
   - sudo apt-get update -qq
 
 install:
-  - pip install ansible==1.9.4
+  - pip install ansible==2.1.2.0
   - ansible-galaxy install geerlingguy.nodejs -p ./roles/
   
   # Add ansible.cfg to pick up roles path.

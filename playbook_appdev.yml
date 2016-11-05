@@ -13,4 +13,4 @@
 - include: appdev.yml
   vars:
     appdev_folder_name: sails
-    nodejs_version: "6.9.1"
+    nodejs_version: "6.x"

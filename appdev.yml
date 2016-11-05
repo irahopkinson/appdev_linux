@@ -6,7 +6,7 @@
   vars:
     nodejs_forever: false
     nodejs_npm_global_packages:
-#      - name: npm
+      - name: npm
       - name: sails
       - name: appdevdesigns/appdev-cli#develop
   roles:

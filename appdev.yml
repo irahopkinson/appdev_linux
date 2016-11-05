@@ -2,18 +2,17 @@
 
 - name: Install AppDev
   hosts: all
-  sudo: yes
+  become: yes
   vars:
     nodejs_forever: false
     nodejs_npm_global_packages:
-      - name: npm
       - name: sails
       - name: appdevdesigns/appdev-cli#develop
   roles:
     - geerlingguy.nodejs
   tasks:
     - name: install appdev (localhost)
-      sudo: no
+      become: no
       # yes types empty line over and over to accept defaults
       shell: yes '' | appdev install {{ appdev_folder_name }} --develop
       args:
@@ -22,7 +21,7 @@
       when: inventory_hostname == 'localhost'
 
     - name: install appdev (test VM)
-      sudo: no
+      become: no
       # yes types empty line over and over to accept defaults
       shell: yes '' | appdev install {{ appdev_folder_name }} --develop
       args:

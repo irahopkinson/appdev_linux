@@ -2,7 +2,7 @@
 
 - name: Install MySQL server
   hosts: all
-  sudo: yes
+  become: yes
   tasks:
     - name: install packages (Linuxmint, Ubuntu, Debian)
       apt: name="{{ item }}" state=present

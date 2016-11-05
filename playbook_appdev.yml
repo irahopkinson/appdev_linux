@@ -2,7 +2,7 @@
 
 - name: Developer Setup for AppDev
   hosts: all
-  sudo: yes
+  become: yes
 
 - include: dev.yml
 - include: mysql.yml

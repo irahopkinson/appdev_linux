@@ -4,7 +4,11 @@
 
 Install and configure development environment for developing AppDev plugins.
 
-You may need to [upgrade Ansible](http://docs.ansible.com/ansible/intro_installation.html#latest-releases-via-apt-ubuntu).
+At the moment (2016 Feb 4) Ansible v2.0.0.2 is [broken on local connections](https://github.com/ansible/ansible/issues/13763). Install v1.9 instead:
+````
+sudo apt-get install python-pip
+sudo pip install ansible==1.9.4
+````
 
 You may need to install Ansible role [geerlingguy.nodejs](https://galaxy.ansible.com/detail#/role/465).
 

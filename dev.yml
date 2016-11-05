@@ -3,12 +3,21 @@
 - name: Setup development environment
   hosts: all
   sudo: yes
+  vars:
+    packages:
+      - unzip
+      - npm
+      - git
+      - gitg
+      - geany
+      - chromium-browser
   tasks:
-    - name: install packages
+    - name: install packages (Linuxmint, Ubuntu, Debian)
       apt: name="{{ item }}" state=present
-      with_items:
-        - unzip
-        - git
-#        - gitg
-#        - geany
-#        - chromium-browser
+      with_items: packages
+      when: ansible_distribution == 'Linuxmint' or ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+    - name: install packages (Fedora, CentOS, Red Hat)
+      yum: name="{{ item }}" state=present
+      with_items: packages
+      when: ansible_distribution == 'Fedora' or ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

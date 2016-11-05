@@ -13,12 +13,11 @@ install:
   - ansible-galaxy install geerlingguy.nodejs -p ./roles/
   
   # Add ansible.cfg to pick up roles path and not check host keys.
-  - "printf '[defaults]\nroles_path = ./roles\nhost_key_checking = False' > ansible.cfg"
+  - "printf '[defaults]\nroles_path = ./roles\nhost_key_checking = False\n' > ansible.cfg"
 
 before_script:
-  # see http://stackoverflow.com/questions/16638573/auto-authorize-ssh-auth-requests-on-travis-ci
-  - mkdir ~/.ssh/
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  # see http://stackoverflow.com/a/25020638
+  - if [ -z `ssh-keygen -F github.com` ]; then ssh-keyscan -H github.com >> ~/.ssh/known_hosts ; fi
 
 script:
   - cd tests
